@@ -65,3 +65,14 @@ int main() {
 
     return 0;
 }
+
+
+
+Enter the number of disk requests: 5
+Enter the disk requests:
+Request 1: 98
+Request 2: 183
+Request 3: 37
+Request 4: 122
+Request 5: 14
+Enter the initial head position: 50
