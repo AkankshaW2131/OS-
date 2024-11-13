@@ -73,3 +73,7 @@ if [ "$error_found" = false ]; then
     echo "No operand errors found. Job is valid."
 fi
 
+////$ ./check_operand_errors.sh
+Enter the ALP input file name: program.alp
+Checking for operand errors...
+No operand errors found. Job is valid.
