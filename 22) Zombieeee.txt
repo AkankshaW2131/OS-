@@ -59,8 +59,25 @@ void calculate_even_odd_sum(int arr[], int n) {
 }
 
 int main() {
-    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    int n;
+
+    // Get the number of elements in the array from the user
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    // Dynamically allocate memory for the array
+    int* arr = (int*)malloc(n * sizeof(int));
+
+    if (arr == NULL) {
+        perror("Memory allocation failed");
+        return -1;
+    }
+
+    // Get the array elements from the user
+    printf("Enter the elements of the array:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
 
     // Task 1: Create a zombie process
     create_zombie_process();
@@ -73,6 +90,18 @@ int main() {
     // Task 3: Calculate sum of even and odd numbers using parent and child process
     calculate_even_odd_sum(arr, n);
 
+    // Free the allocated memory
+    free(arr);
+
     return 0;
 }
 
+Enter the number of elements in the array: 5
+Enter the elements of the array:
+1 2 3 4 5
+Parent process (PID: 12345) created a zombie process (PID: 12346)
+Child process (PID: 12346) exiting to become a zombie
+Parent process (PID: 12345) exiting, creating an orphan process
+Orphan child process (PID: 12347) now adopted by init process (PPID: 1)
+Child process (PID: 12347) - Sum of odd numbers: 9
+Parent process (PID: 12345) - Sum of even numbers: 6
