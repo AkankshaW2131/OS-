@@ -62,3 +62,20 @@ while true; do
     esac
 done
 
+//////Choose an operation:
+1) Insert
+2) Delete
+3) Update
+4) Search
+5) Exit
+Enter your choice: 3
+Enter Student ID to update: 101
+Enter new Name: John Smith
+Enter new Age: 21
+Enter new Grade: B
+Student record updated successfully.
+
+
+
+
+
