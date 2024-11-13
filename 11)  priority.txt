@@ -153,4 +153,12 @@ int main() {
     return 0;
 }
 
+//Enter the number of processes: 3
+//Enter arrival time, burst time, and priority for process 1: 0 5 3
+//Enter arrival time, burst time, and priority for process 2: 2 3 1
+//Enter arrival time, burst time, and priority for process 3: 4 4 2
+
+//Choose Scheduling:
+//1. Non-Preemptive Priority
+//2. Preemptive Priority
 
