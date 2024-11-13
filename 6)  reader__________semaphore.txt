@@ -1,0 +1,84 @@
+#include <pthread.h>
+#include <semaphore.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+
+sem_t wrt;
+pthread_mutex_t mutex;
+int read_count = 0;
+int shared_data = 0;
+
+
+void *reader(void *arg) {
+    int reader_id = *((int *)arg);
+    pthread_mutex_lock(&mutex);
+    read_count++;
+    if (read_count == 1)
+        sem_wait(&wrt);
+    pthread_mutex_unlock(&mutex);
+
+
+    printf("Reader %d: read data = %d\n", reader_id, shared_data);
+    usleep(100000); // simulate reading time
+
+
+    pthread_mutex_lock(&mutex);
+    read_count--;
+    if (read_count == 0)
+        sem_post(&wrt);
+    pthread_mutex_unlock(&mutex);
+
+
+    return NULL;
+}
+
+
+void *writer(void *arg) {
+    int writer_id = *((int *)arg);
+    sem_wait(&wrt);
+
+
+    shared_data += 1;
+    printf("Writer %d: wrote data = %d\n", writer_id, shared_data);
+    usleep(100000); // simulate writing time
+
+
+    sem_post(&wrt);
+    return NULL;
+}
+
+
+int main() {
+    int num_readers = 5, num_writers = 2;
+    pthread_t readers[num_readers], writers[num_writers];
+    int reader_ids[num_readers], writer_ids[num_writers];
+
+
+    sem_init(&wrt, 0, 1);
+    pthread_mutex_init(&mutex, NULL);
+
+
+    for (int i = 0; i < num_readers; i++) {
+        reader_ids[i] = i + 1;
+        pthread_create(&readers[i], NULL, reader, &reader_ids[i]);
+    }
+    for (int i = 0; i < num_writers; i++) {
+        writer_ids[i] = i + 1;
+        pthread_create(&writers[i], NULL, writer, &writer_ids[i]);
+    }
+
+
+    for (int i = 0; i < num_readers; i++)
+        pthread_join(readers[i], NULL);
+    for (int i = 0; i < num_writers; i++)
+        pthread_join(writers[i], NULL);
+
+
+    sem_destroy(&wrt);
+    pthread_mutex_destroy(&mutex);
+    return 0;
+}
+
+
