@@ -19,3 +19,15 @@ while IFS= read -r line; do
     ((line_number++))
 done < "$input_file"
 echo "ALP program loaded into main memory (stored in $MEMORY_FILE)."
+
+
+
+
+
+///$ ./load_alp.sh
+Enter the ALP input file name: program.alp
+Loading ALP program into main memory...
+Loading line 1: MOV A, #5
+Loading line 2: ADD B, #10
+Loading line 3: SUB C, #3
+ALP program loaded into main memory (stored in main_memory.txt).
