@@ -40,3 +40,11 @@ done < "$input_file"
 if [ "$error_found" = false ]; then
     echo "No opcode errors found. Job is valid."
 fi
+
+
+
+
+//$ ./check_opcodes.sh
+Enter the ALP input file name: program.alp
+Checking for opcode errors...
+No opcode errors found. Job is valid.
