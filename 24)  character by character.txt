@@ -22,3 +22,9 @@ done < "$source_file"
 echo "Contents copied successfully to $destination_file."
 
 
+//$ ./copy_script.sh
+Enter the source file name: source.txt
+Enter the destination file name: destination.txt
+Copying contents character by character...
+Copying contents line by line...
+Contents copied successfully to destination.txt.
