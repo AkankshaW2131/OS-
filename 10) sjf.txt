@@ -152,4 +152,12 @@ int main() {
     return 0;
 }
 
+///Enter the number of processes: 3
+/Enter arrival time and burst time for process 1: 0 7
+//Enter arrival time and burst time for process 2: 2 4
+//Enter arrival time and burst time for process 3: 4 1
+
+//Choose Scheduling:
+//1. Non-Preemptive SJF
+//2. Preemptive SJF
 
